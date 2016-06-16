@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     typescriptAngular = require('gulp-typescript-angular'),
     inject = require('gulp-inject'),
     bowerFiles = require('main-bower-files'),
+    gulpBowerFiles = require('gulp-main-bower-files');
     es = require('event-stream'),
     browserSync = require('browser-sync').create(),
     clean = require('gulp-clean');
@@ -17,8 +18,9 @@ var path = {
 gulp.task('dist:inject', function () {
 
     var cssFiles = gulp.src(path.src + '/scss/**/*.scss')
-            .pipe(scss().on('error', scss.logError))
-            .pipe(gulp.dest(path.dist + '/css'));
+        .pipe(scss().on('error', scss.logError))
+        .pipe(browserSync.stream())
+        .pipe(gulp.dest(path.dist + '/css'));
 
     var jsFiles = gulp.src(path.src + '/**/*.ts')
         .pipe(typescript())
@@ -29,13 +31,18 @@ gulp.task('dist:inject', function () {
 
     return gulp.src(path.src + '/index.html')
 
-        .pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
+        .pipe(inject(gulp.src(bowerFiles(), {read: false}), {
+            ignorePath: '/dist',
+            name: 'bower'
+        }))
 
         .pipe(inject(
             es.merge(
                 cssFiles,
                 jsFiles
-            )
+            ), {
+                ignorePath: '/dist'
+            }
         ))
 
         .pipe(gulp.dest(path.dist));
@@ -47,10 +54,19 @@ gulp.task('dist:html', function() {
         .pipe(gulp.dest(path.dist));
 });
 
+gulp.task('dist:bower', function() {
+    return gulp.src('./bower.json')
+        .pipe(gulpBowerFiles())
+        .pipe(gulp.dest(path.dist + '/lib'));
+});
+
 gulp.task('dist:serve', function() {
     return browserSync.init({
         server: {
-            baseDir: path.dist
+            baseDir: path.dist,
+            routes: {
+                "/dist": "/"
+            }
         }
     });
 });
@@ -60,5 +76,12 @@ gulp.task('clean', function () {
         .pipe(clean())
 });
 
-gulp.task('default', ['dist:html', 'dist:inject', 'dist:serve']);
+gulp.task('dist:build', ['dist:html', 'dist:inject', 'dist:bower']);
+
+gulp.task('watch', function() {
+    gulp.watch(path.src + '/**/*', ['dist:build']);
+    gulp.watch(path.src + '/**/*').on('change', browserSync.reload);
+});
+
+gulp.task('default', ['dist:build', 'dist:serve', 'watch']);
 
