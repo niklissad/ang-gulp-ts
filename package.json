@@ -1,0 +1,25 @@
+{
+  "name": "ang-gulp-ts",
+  "version": "0.0.1",
+  "description": "AngularJS bootstrap project with Gulp and TS",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "niklissad",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.13.0",
+    "event-stream": "^3.3.2",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-typescript": "^2.13.6",
+    "gulp-typescript-angular": "^0.1.1",
+    "main-bower-files": "^2.13.1"
+  },
+  "engines": {
+    "node": "^6.2.0"
+  }
+}
