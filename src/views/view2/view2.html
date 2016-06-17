@@ -1,4 +1,33 @@
-<p>This is the partial for view 2.</p>
-<p>
-
-</p>
+<div class="table-filter" ng-controller="View2Ctrl">
+    Search By : <select ng-model="searchoption">
+    <option value="all">All</option>
+    <option value="name">Name</option>
+    <option value="age">Age</option>
+    <option value="gender">Gender</option>
+    <option value="salary">Salary</option>
+</select> Search For : <input type="text" placeholder="Search for" ng-model="searchtext"/><br/><br/>Skip:
+    <input type="number" ng-model="skip" step="1" min="0" max="{{employees.length-1}}"/>&nbsp;Limit To:<input
+        type="number" ng-model="limiter" step="1" min="0" max="{{employees.length}}"/><br/><br/>
+    <table>
+        <tr>
+            <th ng-click="dosorting('name')">Name
+                <div ng-class="getreverseclass('name')"/>
+            </th>
+            <th ng-click="dosorting('age')">Age
+                <div ng-class="getreverseclass('age')"/>
+            </th>
+            <th ng-click="dosorting('gender')">Gender
+                <div ng-class="getreverseclass('gender')"/>
+            </th>
+            <th ng-click="dosorting('salary')">Salary
+                <div ng-class="getreverseclass('salary')"/>
+            </th>
+        </tr>
+        <tr ng-repeat="employee in employees | limitTo:limiter:skip |  orderBy:column:isreverse | filter:search">
+            <td>{{employee.name | uppercase}}</td>
+            <td>{{employee.age}}</td>
+            <td>{{employee.gender | lowercase }}</td>
+            <td>{{employee.salary | currency:"INR ":2}}</td>
+        </tr>
+    </table>
+</div>

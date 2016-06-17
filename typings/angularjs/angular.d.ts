@@ -4,7 +4,7 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
 
-/// <reference path="jquery.d.ts" />
+/// <reference path="../jquery/jquery.d.ts" />
 
 declare var angular: angular.IAngularStatic;
 
@@ -288,7 +288,8 @@ declare namespace angular {
         service(object: Object): IModule;
         /**
          * Register a value service with the $injector, such as a string, a number, an array, an object or a function. This is short for registering a service where its provider's $get property is a factory function that takes no arguments and returns the value service.
-         Value services are similar to constant services, except that they cannot be injected into a module configuration function (see config) but they can be overridden by an Angular decorator.
+
+           Value services are similar to constant services, except that they cannot be injected into a module configuration function (see config) but they can be overridden by an Angular decorator.
          *
          * @param name The name of the instance.
          * @param value The value.
@@ -899,7 +900,7 @@ declare namespace angular {
          * @param identifierContinue The function that will decide whether the given character is a valid identifier continue character.
          **/
         setIdentifierFns(identifierStart?: (character: string, codePoint: number) => boolean,
-                         identifierContinue?: (character: string, codePoint: number) => boolean): void;
+            identifierContinue?: (character: string, codePoint: number) => boolean): void;
     }
 
     interface ICompiledExpression {
@@ -1463,12 +1464,12 @@ declare namespace angular {
     }
 
     /**
-     * Object that controls the defaults for $http provider. Not all fields of IRequestShortcutConfig can be configured
-     * via defaults and the docs do not say which. The following is based on the inspection of the source code.
-     * https://docs.angularjs.org/api/ng/service/$http#defaults
-     * https://docs.angularjs.org/api/ng/service/$http#usage
-     * https://docs.angularjs.org/api/ng/provider/$httpProvider The properties section
-     */
+    * Object that controls the defaults for $http provider. Not all fields of IRequestShortcutConfig can be configured
+    * via defaults and the docs do not say which. The following is based on the inspection of the source code.
+    * https://docs.angularjs.org/api/ng/service/$http#defaults
+    * https://docs.angularjs.org/api/ng/service/$http#usage
+    * https://docs.angularjs.org/api/ng/provider/$httpProvider The properties section
+    */
     interface IHttpProviderDefaults {
         /**
          * {boolean|Cache}
@@ -1509,10 +1510,10 @@ declare namespace angular {
         withCredentials?: boolean;
 
         /**
-         * A function used to the prepare string representation of request parameters (specified as an object). If
-         * specified as string, it is interpreted as a function registered with the $injector. Defaults to
-         * $httpParamSerializer.
-         */
+        * A function used to the prepare string representation of request parameters (specified as an object). If
+        * specified as string, it is interpreted as a function registered with the $injector. Defaults to
+        * $httpParamSerializer.
+        */
         paramSerializer?: string | ((obj: any) => string);
     }
 
@@ -1721,7 +1722,7 @@ declare namespace angular {
     interface IComponentTemplateFn {
         ( $element?: JQuery, $attrs?: IAttributes ): string;
     }
-
+    
     /**
      * Components have a well-defined lifecycle Each component can implement "lifecycle hooks". These are methods that
      * will be called at certain points in the life of the component.

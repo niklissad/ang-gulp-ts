@@ -27,8 +27,6 @@ gulp.task('dist:inject', function () {
         .pipe(typescriptAngular())
         .pipe(gulp.dest(path.dist));
 
-
-
     return gulp.src(path.src + '/index.html')
 
         .pipe(inject(gulp.src(bowerFiles(), {read: false}), {
