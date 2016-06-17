@@ -2,7 +2,7 @@
     <h2>Todo list</h2>
     <div ng-controller="View1Ctrl as todoList">
         <span>{{todoList.remaining()}} of {{todoList.todos.length}} remaining</span>
-        [ <a href="" ng-click="todoList.archive()">complit</a> ]
+        [ <a href="" ng-click="todoList.archive()">complete</a> ]
         <ul class="unstyled">
             <li ng-repeat="todo in todoList.todos">
                 <input type="checkbox" ng-model="todo.done">
