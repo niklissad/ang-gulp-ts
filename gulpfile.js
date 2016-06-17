@@ -80,7 +80,11 @@ gulp.task('dist:build', ['dist:html', 'dist:inject', 'dist:bower']);
 
 gulp.task('watch', function() {
     gulp.watch(path.src + '/**/*', ['dist:build']);
-    gulp.watch(path.src + '/**/*').on('change', browserSync.reload);
+    gulp.watch(path.dist + '/index.html', ['reload']);
+});
+
+gulp.task('reload', function() {
+    return browserSync.reload();
 });
 
 gulp.task('default', ['dist:build', 'dist:serve', 'watch']);
