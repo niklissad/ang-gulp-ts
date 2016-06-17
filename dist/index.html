@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- bower:css -->
+    <link rel="stylesheet" href="/lib/angular-material/angular-material.css">
+    <!-- endinject -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="/css/main.css">
+    <!-- endinject -->
+
+</head>
+<body ng-cloak>
+<ul class="menu">
+    <li><a ui-sref="view1">ToDo List</a></li>
+    <li><a ui-sref="view2">Table</a></li>
+</ul>
+
+<div ui-view></div>
+
+<footer>Angular app</footer>
+
+<!-- bower:js -->
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="/lib/angular-animate/angular-animate.js"></script>
+<script src="/lib/angular-aria/angular-aria.js"></script>
+<script src="/lib/angular-messages/angular-messages.js"></script>
+<script src="/lib/angular-material/angular-material.js"></script>
+<!-- endinject -->
+<!-- inject:js -->
+<script src="/app.js"></script>
+<script src="/routes.js"></script>
+<script src="/directives/select.dir.js"></script>
+<script src="/services/auth.srv.js"></script>
+<script src="/views/view1/view1.ctr.js"></script>
+<script src="/views/view2/view2.ctr.js"></script>
+<!-- endinject -->
+
+</body>
+</html>

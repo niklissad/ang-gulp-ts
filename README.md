@@ -1,14 +1,25 @@
 # AngularJS bootstrap project with Gulp and TS
 
-## Please don't forget
+## Please don't forget to install Node.js and:
 
 ```
+npm install bower gulp -g
 npm install
 bower install
 ```
 
 
-##  To build and serve
+##  To build application use
 ```
-gulp
+gulp dist:build
+```
+
+##  To serve application use
+```
+gulp serve
+```
+
+##  To clean dist directory use
+```
+gulp clean
 ```
